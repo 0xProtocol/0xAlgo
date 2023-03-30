@@ -1,0 +1,14 @@
+//@version 1
+indicator("Top and Bottom Market Indicator", overlay=true)
+
+top_thresh = input.float(title="Top Threshold", defval=70)
+bottom_thresh = input.float(title="Bottom Threshold", defval=30)
+
+rsi_length = input.int(title="RSI Length", defval=14)
+rsi = ta.rsi(close, rsi_length)
+
+top = rsi >= top_thresh
+bottom = rsi <= bottom_thresh
+
+plotshape(top, title="Top", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small)
+plotshape(bottom, title="Bottom", style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small)
